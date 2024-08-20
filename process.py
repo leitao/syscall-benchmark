@@ -55,11 +55,20 @@ def parse_output():
 def read_config():
     entry = {}
     with open("/tmp/config", 'r') as f:
+        lines = f.readlines()
         for mitigation in mitigations:
             entry[mitigation] = 'n'
-            for line in f.readlines():
+            for line in lines:
                 if f"{mitigation}=y" in line:
                     entry[mitigation] = 'y'
+
+    entry["mitigations"] = ""
+    with open("/proc/cmdline", 'r') as f:
+        lines =  f.readlines()
+        for line in lines:
+            if "mitigations=off" in line:
+                entry["mitigations"] = "off"
+
     return entry
 
 
