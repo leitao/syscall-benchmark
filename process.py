@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -69,9 +69,11 @@ entries = parse_output()
 for data in entries:
     for k in data.keys():
         print(f"{k},", end="")
+    break
 
-    print()
+print()
+for data in entries:
     for k in data.keys():
         print(f"{data[k]},", end="")
 
-    print("\n")
+    print("")
