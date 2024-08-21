@@ -76,13 +76,13 @@ def read_config():
 os.system("zcat /proc/config.gz | grep CONFIG_MITIGATION > /tmp/config")
 entries = parse_output()
 for data in entries:
-    for k in data.keys():
+    for k in reversed(data.keys()):
         print(f"{k},", end="")
     break
 
 print()
 for data in entries:
-    for k in data.keys():
+    for k in reversed(data.keys()):
         print(f"{data[k]},", end="")
 
     print("")
